@@ -52,7 +52,7 @@ export function computeQuantile(quantiles, value) {
  * @param {number}    ecoIndex   The ecoIndex value.
  * @returns {string}  The associated grade.
  */
-function getEcoIndexGrade(ecoIndex) {
+export function getEcoIndexGrade(ecoIndex) {
   let name = false, i = 0;
   do {
     if (ecoIndex > ecoIndexRanges[i].value) {
