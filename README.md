@@ -47,5 +47,11 @@ const ecoIndex = computeEcoIndex(dom, req, size);
 const grade = getEcoIndexGrade(ecoIndex);
 ```
 
+## Testing
+We use mocha for testing.
+You can launch test using this command : 
+```
+yarn test
+```
 
 ## [License](LICENSE)
