@@ -1,22 +1,37 @@
-export const quantiles = {
-  dom: [0, 47, 75, 159, 233, 298, 358, 417, 476, 537, 603, 674, 753, 843, 949, 1076, 1237, 1459, 1801, 2479, 594601],
-  req: [0, 2, 15, 25, 34, 42, 49, 56, 63, 70, 78, 86, 95, 105, 117, 130, 147, 170, 205, 281, 3920],
-  size: [0, 1.37, 144.7, 319.53, 479.46, 631.97, 783.38, 937.91, 1098.62, 1265.47, 1448.32, 1648.27, 1876.08, 2142.06, 2465.37, 2866.31, 3401.59, 4155.73, 5400.08, 8037.54, 223212.26],
+let quantiles, ecoIndexGrades;
+
+/**
+ * Return grades list.
+ */
+export function getExoIndexGradesList() {
+  if (!ecoIndexGrades) {
+    ecoIndexGrades = [
+      {value: 80, grade: 'A'},
+      {value: 70, grade: 'B'},
+      {value: 55, grade: 'C'},
+      {value: 40, grade: 'D'},
+      {value: 25, grade: 'E'},
+      {value: 10, grade: 'F'},
+      {value: 0, grade: 'G'},
+    ];
+  }
+  return ecoIndexGrades;
 }
 
 /**
- * Eco index ranges.
- * @type {[{name: string, value: number},{name: string, value: number},{name: string, value: number},{name: string, value: number},{name: string, value: number},null,null]}
+ * Return quantiles list.
+ * @returns {{dom: number[], size: number[], req: number[]}}
  */
-export const ecoIndexRanges = [
-  {value: 80, name: 'A'},
-  {value: 70, name: 'B'},
-  {value: 55, name: 'C'},
-  {value: 40, name: 'D'},
-  {value: 25, name: 'E'},
-  {value: 10, name: 'F'},
-  {value: 0, name: 'G'},
-];
+export function getQuantiles() {
+  if (!quantiles) {
+    quantiles = {
+      dom: [0, 47, 75, 159, 233, 298, 358, 417, 476, 537, 603, 674, 753, 843, 949, 1076, 1237, 1459, 1801, 2479, 594601],
+      req: [0, 2, 15, 25, 34, 42, 49, 56, 63, 70, 78, 86, 95, 105, 117, 130, 147, 170, 205, 281, 3920],
+      size: [0, 1.37, 144.7, 319.53, 479.46, 631.97, 783.38, 937.91, 1098.62, 1265.47, 1448.32, 1648.27, 1876.08, 2142.06, 2465.37, 2866.31, 3401.59, 4155.73, 5400.08, 8037.54, 223212.26],
+    };
+  }
+  return quantiles;
+}
 
 /**
  * Compute ecoIndex based on formula from web site www.ecoindex.fr
@@ -26,6 +41,7 @@ export const ecoIndexRanges = [
  * @returns {number} EcoIndex value.
  */
 export function computeEcoIndex(dom, req, size) {
+  const quantiles = getQuantiles();
   const q_dom = computeQuantile(quantiles.dom, dom);
   const q_req = computeQuantile(quantiles.req, req);
   const q_size = computeQuantile(quantiles.size, size);
@@ -53,12 +69,17 @@ export function computeQuantile(quantiles, value) {
  * @returns {string}  The associated grade.
  */
 export function getEcoIndexGrade(ecoIndex) {
+  if (ecoIndex < 0 || ecoIndex > 100) {
+    return false;
+  }
+
+  const ecoIndexGrades = getExoIndexGradesList();
   let name = false, i = 0;
   do {
-    if (ecoIndex > ecoIndexRanges[i].value) {
-      name = ecoIndexRanges[i].name;
+    if (ecoIndex > ecoIndexGrades[i].value) {
+      name = ecoIndexGrades[i].grade;
     }
-  } while (name === false && i++ < ecoIndexRanges.length);
+  } while (name === false && i++ < ecoIndexGrades.length - 1);
 
   return name;
 }
