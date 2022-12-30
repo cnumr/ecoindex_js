@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {getEcoIndexGrade} from "../ecoindex.js";
+import {getEcoIndexGrade} from "../index.js";
 
 /**
  * Test getEcoIndexGrade.

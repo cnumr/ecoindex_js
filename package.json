@@ -1,7 +1,7 @@
 {
-  "name": "ecoindex-computor",
+  "name": "ecoindex",
   "version": "1.0.0",
-  "main": "ecoindex.js",
+  "main": "index.js",
   "repository": "https://github.com/tsecher/EcoIndex-Computor.git",
   "author": "tsecher <me@thomas-secher.fr>",
   "license": "CC-BY-NC-ND-3.0",

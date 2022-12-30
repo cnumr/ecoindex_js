@@ -1,4 +1,4 @@
-# EcoIndex Computor
+# EcoIndex - JS
 
 This project provides methods for the EcoIndex population.
 
@@ -29,8 +29,6 @@ const ecoIndex = computeEcoIndex(dom, req, size);
 ```
 
 
-## Licence 
-
 ## getEcoIndexGrade(ecoIndex)
 `getEcoIndexGrade` returns the grade according to the ecoIndex value.
 
@@ -49,9 +47,13 @@ const grade = getEcoIndexGrade(ecoIndex);
 
 ## Testing
 We use mocha for testing.
-You can launch test using this command : 
+You can launch tests using this command : 
 ```
 yarn test
 ```
 
 ## [License](LICENSE)
+
+## Disclaimer
+The LCA values used by ecoindex to evaluate environmental impacts are not under free license - ©Frédéric Bordage  
+Please also refer to the mentions provided in the code files for specifics on the IP regime.
