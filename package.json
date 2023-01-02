@@ -1,6 +1,6 @@
 {
   "name": "ecoindex",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/tsecher/ecoindex_js.git",
   "author": "tsecher <me@thomas-secher.fr>",
