@@ -3,7 +3,7 @@ let quantiles, ecoIndexGrades;
 /**
  * Return grades list.
  */
-export function getExoIndexGradesList() {
+export function getEcoIndexGradesList() {
   if (!ecoIndexGrades) {
     ecoIndexGrades = [
       {value: 80, grade: 'A'},
@@ -73,7 +73,7 @@ export function getEcoIndexGrade(ecoIndex) {
     return false;
   }
 
-  const ecoIndexGrades = getExoIndexGradesList();
+  const ecoIndexGrades = getEcoIndexGradesList();
   let name = false, i = 0;
   do {
     if (ecoIndex > ecoIndexGrades[i].value) {
