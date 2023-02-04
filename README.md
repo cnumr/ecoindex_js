@@ -49,7 +49,7 @@ const grade = getEcoIndexGrade(ecoIndex);
 We use mocha for testing.
 You can launch tests using this command : 
 ```
-yarn test
+npm test
 ```
 
 ## [License](LICENSE)
