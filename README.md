@@ -23,7 +23,7 @@ The calculation method is discribed on here : ([EcoIndex pouplation](https://www
 
 ### Example
 ```javascript
-import {computeEcoIndex} from "ecoindex-computor/ecoindex";
+import {computeEcoIndex} from "ecoindex";
 
 const ecoIndex = computeEcoIndex(dom, req, size);
 ```
@@ -39,7 +39,7 @@ const ecoIndex = computeEcoIndex(dom, req, size);
 
 ### Example
 ```javascript
-import {computeEcoIndex, getEcoIndexGrade} from "ecoindex-computor/ecoindex";
+import {computeEcoIndex, getEcoIndexGrade} from "ecoindex";
 
 const ecoIndex = computeEcoIndex(dom, req, size);
 const grade = getEcoIndexGrade(ecoIndex);
