@@ -18,5 +18,11 @@
   },
   "dependencies": {
     "ecoindex_reference": "^1"
+  },
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "require": "./index.cjs"
+    }
   }
 }
