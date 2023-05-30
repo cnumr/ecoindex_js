@@ -14,8 +14,8 @@ export function getEcoIndexGradesList() {
 export function getQuantiles() {
   return {
     dom: reference.quantiles.dom_size,
-    size: reference.quantiles.nb_request,
-    req: reference.quantiles.response_size,
+    req: reference.quantiles.nb_request,
+    size: reference.quantiles.response_size,
   }
 }
 
