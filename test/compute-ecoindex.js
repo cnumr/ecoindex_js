@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {getQuantiles, computeEcoIndex} from "../index.js";
+import {getQuantiles, computeEcoIndex} from "../dist/index.js";
 
 /**
  * Test ecoIndex value.
