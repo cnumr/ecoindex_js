@@ -1,6 +1,6 @@
 # EcoIndex - JS
 
-This project provides methods for the EcoIndex population.
+This project provides methods for the EcoIndex calculation.
 
 It is based on the work of the association [GreenIT](https://www.greenit.fr/)
 and the web extension [GreenIT-Analysis](https://github.com/cnumr/GreenIT-Analysis/).
