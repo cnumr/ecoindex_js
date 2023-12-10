@@ -8,8 +8,11 @@ and the web extension [GreenIT-Analysis](https://github.com/cnumr/GreenIT-Analys
 The sources are based on the initial Web Extension ([https://github.com/cnumr/GreenIT-Analysis/blob/master/script/ecoIndex.js](https://github.com/cnumr/GreenIT-Analysis/blob/master/script/ecoIndex.js)) code.
 The calculation method is discribed on here : ([EcoIndex pouplation](https://www.ecoindex.fr/comment-ca-marche/))
 
+# Install
+Install package with npm  
+`npm install ecoindex`
 
-# How to use ? 
+# How to use ?
 
 ## computeEcoIndex(dom, req, size)
 `computeEcoIndex` returns the ecoIndex according to 3 parameters.
