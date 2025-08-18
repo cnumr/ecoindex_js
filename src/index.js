@@ -1,4 +1,4 @@
-import reference from 'ecoindex_reference' assert {type: 'json'};
+import reference from 'ecoindex_reference' with {type: 'json'};
 
 /**
  * Return grades list.
