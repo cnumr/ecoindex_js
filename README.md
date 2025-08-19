@@ -6,7 +6,7 @@ It is based on the work of the association [GreenIT](https://www.greenit.fr/)
 and the web extension [GreenIT-Analysis](https://github.com/cnumr/GreenIT-Analysis/).
 
 The sources are based on the initial Web Extension ([https://github.com/cnumr/GreenIT-Analysis/blob/master/script/ecoIndex.js](https://github.com/cnumr/GreenIT-Analysis/blob/master/script/ecoIndex.js)) code.
-The calculation method is discribed on here : ([EcoIndex pouplation](https://www.ecoindex.fr/comment-ca-marche/))
+The calculation method is described on here : ([EcoIndex pouplation](https://www.ecoindex.fr/comment-ca-marche/))
 
 # Install
 Install package with npm  
