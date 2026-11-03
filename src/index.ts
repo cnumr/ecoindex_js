@@ -1,4 +1,4 @@
-import reference from 'ecoindex_reference' with {type: 'json'};
+import reference from "ecoindex_reference" with { type: "json" };
 
 /**
  * Return grades list.
@@ -9,14 +9,17 @@ export function getEcoIndexGradesList() {
 
 /**
  * Return quantiles list.
- * @returns {{dom: number[], size: number[], req: number[]}}
  */
-export function getQuantiles() {
+export function getQuantiles(): {
+  dom: number[];
+  size: number[];
+  req: number[];
+} {
   return {
     dom: reference.quantiles.dom_size,
     req: reference.quantiles.nb_request,
     size: reference.quantiles.response_size,
-  }
+  };
 }
 
 /**
@@ -26,13 +29,17 @@ export function getQuantiles() {
  * @param {number}  size    Size of request.
  * @returns {number} EcoIndex value.
  */
-export function computeEcoIndex(dom, req, size) {
+export function computeEcoIndex(
+  dom: number,
+  req: number,
+  size: number,
+): number {
   const quantiles = getQuantiles();
   const q_dom = computeQuantile(quantiles.dom, dom);
   const q_req = computeQuantile(quantiles.req, req);
   const q_size = computeQuantile(quantiles.size, size);
 
-  return 100 - 5 * (3 * q_dom + 2 * q_req + q_size) / 6;
+  return 100 - (5 * (3 * q_dom + 2 * q_req + q_size)) / 6;
 }
 
 /**
@@ -42,9 +49,14 @@ export function computeEcoIndex(dom, req, size) {
  * @param {number}    value       Value.
  * @returns {number}  Quantile index.
  */
-export function computeQuantile(quantiles, value) {
+export function computeQuantile(quantiles: number[], value: number): number {
   for (let i = 1; i < quantiles.length; i++) {
-    if (value < quantiles[i]) return (i - 1 + (value - quantiles[i - 1]) / (quantiles[i] - quantiles[i - 1]));
+    const previous = quantiles[i - 1];
+    const current = quantiles[i];
+    if (previous === undefined || current === undefined) continue;
+    if (value < current) {
+      return i - 1 + (value - previous) / (current - previous);
+    }
   }
   return quantiles.length - 1;
 }
@@ -52,22 +64,20 @@ export function computeQuantile(quantiles, value) {
 /**
  * Return the grade associated to the ecoIndex value.
  * @param {number}    ecoIndex   The ecoIndex value.
- * @returns {string}  The associated grade.
+ * @returns {string|false}  The associated grade, or false is none has been found.
  */
-export function getEcoIndexGrade(ecoIndex) {
+export function getEcoIndexGrade(ecoIndex: number): string | false {
   if (ecoIndex < 0 || ecoIndex > 100) {
     return false;
   }
 
   const ecoIndexGrades = getEcoIndexGradesList();
-  let name = false, i = 0;
-  do {
-    if (ecoIndex > ecoIndexGrades[i].value) {
-      name = ecoIndexGrades[i].grade;
+  for (const grade of ecoIndexGrades) {
+    if (ecoIndex > grade.value) {
+      return grade.grade;
     }
-  } while (name === false && i++ < ecoIndexGrades.length - 1);
-
-  return name;
+  }
+  return false;
 }
 
 /**
@@ -75,8 +85,10 @@ export function getEcoIndexGrade(ecoIndex) {
  * @param {number} ecoIndex   The ecoIndex value.
  * @returns {string}  The gas emission.
  */
-export function computeGreenhouseGasesEmissionfromEcoIndex(ecoIndex) {
-  return (2 + 2 * (50 - ecoIndex) / 100).toFixed(2);
+export function computeGreenhouseGasesEmissionfromEcoIndex(
+  ecoIndex: number,
+): string {
+  return (2 + (2 * (50 - ecoIndex)) / 100).toFixed(2);
 }
 
 /**
@@ -84,6 +96,6 @@ export function computeGreenhouseGasesEmissionfromEcoIndex(ecoIndex) {
  * @param {number}  ecoIndex  The ecoIndex value.
  * @returns {string}  The water consumption.
  */
-export function computeWaterConsumptionfromEcoIndex(ecoIndex) {
-  return (3 + 3 * (50 - ecoIndex) / 100).toFixed(2);
+export function computeWaterConsumptionfromEcoIndex(ecoIndex: number): string {
+  return (3 + (3 * (50 - ecoIndex)) / 100).toFixed(2);
 }

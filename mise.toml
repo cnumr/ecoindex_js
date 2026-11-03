@@ -1,0 +1,46 @@
+[settings]
+experimental = true
+lockfile = true
+
+[tools]
+bun = "1.4.4"
+
+[deps.bun]
+auto = true
+
+[tasks."build"]
+description = "Build ESM and CJS"
+run = [{ tasks = ["build:esm", "build:cjs", "compile"] }]
+
+[tasks."build:common"]
+hide = true
+run = "bun build ./src/index.ts --production"
+
+[tasks."build:esm"]
+description = "Build ESM only"
+run = [ { task = "build:common", args = ["--outfile", "./dist/index.js", "--format", "esm"] } ]
+
+[tasks."build:cjs"]
+description = "Build CJS only"
+run = [ { task = "build:common", args = ["--outfile", "./dist/index.cjs", "--format", "cjs"] } ]
+
+[tasks.typecheck]
+description = "Check types"
+run = "bun check"
+
+[tasks.check]
+description = "Check source code lint and format"
+run = "bun run biome check"
+
+[tasks.compile]
+description = "Generate TypeScript declarations"
+run = "bun run tsc"
+
+[tasks.publish]
+description = "Publish the package"
+depends = ["build"]
+run = "bun publish --access public"
+
+[tasks."test:unit"]
+description = "Run unit tests (watch)"
+run = "bun test"
